@@ -1,0 +1,8 @@
+<li>
+  <%= gravatar_for parent %>
+  <%= link_to parent.name, parent %>
+  <% if current_parent.admin? && !current_parent?(parent) %>
+    | <%= link_to "delete", parent, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+</li>

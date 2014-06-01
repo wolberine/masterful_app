@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
+    @parent = current_parent
   end
 
   def help

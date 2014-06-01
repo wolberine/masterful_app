@@ -1,16 +1,18 @@
 class ParentsController < ApplicationController
-  before_action :set_parent, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_parent, only: [:index, :edit, :update, :destroy]
+  before_action :correct_parent,   only: [:edit, :update]
+  before_action :admin_parent,     only: :destroy
 
   # GET /parents
   # GET /parents.json
   def index
-    @parents = Parent.all
+    @parents = Parent.paginate(page: params[:page])
   end
 
   # GET /parents/1
   # GET /parents/1.json
   def show
-    @user = Parent.find(params[:id])
+    @parent = Parent.find(params[:id])
   end
 
   # GET /parents/new
@@ -20,6 +22,7 @@ class ParentsController < ApplicationController
 
   # GET /parents/1/edit
   def edit
+    @parent = Parent.find(params[:id])
   end
 
   # POST /parents
@@ -27,6 +30,7 @@ class ParentsController < ApplicationController
   def create
     @parent = Parent.new(parent_params)
     if @parent.save
+      sign_in @parent
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @parent
     else
@@ -37,25 +41,24 @@ class ParentsController < ApplicationController
   # PATCH/PUT /parents/1
   # PATCH/PUT /parents/1.json
   def update
-    respond_to do |format|
-      if @parent.update(parent_params)
-        format.html { redirect_to @parent, notice: 'Parent was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @parent.errors, status: :unprocessable_entity }
-      end
+    @parent = Parent.find(params[:id])
+    if @parent.update_attributes(parent_params)
+      flash[:success] = "Profile updated"
+      redirect_to @parent
+    else
+      render 'edit'
     end
   end
+
+
+
 
   # DELETE /parents/1
   # DELETE /parents/1.json
   def destroy
-    @parent.destroy
-    respond_to do |format|
-      format.html { redirect_to parents_url }
-      format.json { head :no_content }
-    end
+    Parent.find(params[:id]).destroy
+    flash[:success] = "Parent deleted."
+    redirect_to parents_url
   end
 
   private
@@ -68,5 +71,20 @@ class ParentsController < ApplicationController
     def parent_params
       params.require(:parent).permit(:name, :email, :password,
                                    :password_confirmation)
+    end
+
+    # Before filters
+    def signed_in_parent
+      store_location
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
+
+   def correct_parent
+      @parent= Parent.find(params[:id])
+      redirect_to(root_url) unless current_parent?(@parent)
+    end
+
+    def admin_parent
+      redirect_to(root_url) unless current_parent.admin?
     end
 end
