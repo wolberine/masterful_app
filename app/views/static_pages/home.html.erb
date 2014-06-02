@@ -2,17 +2,15 @@
 <% if signed_in? %>
 	<h2> Welcome, <%= @parent.name %>! </h2>
 	<h1> What do you need help with today? </h1>
-	<form class="navbar-form nav-bar-left" role="search">
-		<div class="form-group">
-			<input type="text" class="form-control" placeholder="Search">
-		</div>
-		<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>Submit</button>
-	</form>
+	<div class="input-append span10">
+		<input type="text" placeholder="Search">
+		<button type="submit" class="btn btn-default">Submit</button>
+	</div>
     <!-- Carousel
     ================================================== -->
+    <div class="clearfix"></div>
+    <h2>Popular Deals in ....</h2> <!--fill in with user location-->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    	<h2>Popular Deals in ....</h2> <!--fill in with user location-->
-
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -21,71 +19,43 @@
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-        	<div class="container row">
-		        	<img src="http://placehold.it/140x100">
-		        	<img src="http://placehold.it/140x100">
-		        	<img src="http://placehold.it/140x100">
-		        	<img src="http://placehold.it/140x100">
+        	<div class="row-fluid">
+        		<div class='span1'></div>
+        		    <% 5.times do |n| %>
+						<%= render 'shared/daily_deal' %>
+					<% end %>
+				<div class='span1'></div>
 	        </div>
-            <div class="carousel-caption">
-              <p>A caption</p>
-            </div>
         </div>
-        <div class="item">
-        	<div class="container row">
-		        	<img src="http://placehold.it/140x100">
-		        	<img src="http://placehold.it/140x100">
-		        	<img src="http://placehold.it/140x100">
-		        	<img src="http://placehold.it/140x100">
-	        </div>
-            <div class="carousel-caption">
-              <p>Another caption</p>
-            </div>
-        </div>
-        <div class="item">
-        	<div class="container row">
-		        	<img src="http://placehold.it/140x100">
-		        	<img src="http://placehold.it/140x100">
-		        	<img src="http://placehold.it/140x100">
-		        	<img src="http://placehold.it/140x100">
-	        </div>
-            <div class="carousel-caption">
-              <p>One more caption</p>
-            </div>
-        </div>
+        <% 2.times do |n| %>
+          <div class="item">
+          	<div class="row-fluid">
+          		<div class='span1'></div>
+          		    <% 5.times do |n| %>
+  						      <%= render 'shared/daily_deal' %>
+  					      <% end %>
+  				    <div class='span1'></div>
+  	        </div>
+          </div>
+        <% end %>
       </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="icon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="icon-chevron-right"></span></a>
     </div><!-- /.carousel -->
 
   <!-- Marketing messaging and featurettes
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
-    <div class=span12><h2>Our most popular services</h2></div>
+    <div class='span12 kuler-background'><h3>Our most popular services</h3></div>
 
     <div class="container marketing">
 
       <!-- Three columns of text below the carousel -->
       <div class="row">
-        <div class="span4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="span4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2>Heading</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="span4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
+		    <%= render 'shared/popular_service', :locals => {:icon => 'icon-music', :category => 'Music' } %>
+        <%= render 'shared/popular_service', :locals => {:icon => 'icon-star', :category => 'Academics' } %>
+        <%= render 'shared/popular_service', :locals => {:icon => 'icon-heart', :category => 'Soft Skills' } %>
       </div><!-- /.row -->
 
 <% else %>

@@ -32,7 +32,7 @@ class ParentsController < ApplicationController
     if @parent.save
       sign_in @parent
       flash[:success] = "Welcome to the Sample App!"
-      redirect_to @parent
+      redirect_to root_url
     else
       render 'new'
     end
