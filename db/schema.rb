@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140531224814) do
+ActiveRecord::Schema.define(version: 20140604021053) do
+
+  create_table "businesses", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "instruction"
+    t.string   "tagline"
+  end
 
   create_table "children", force: true do |t|
     t.string   "content"

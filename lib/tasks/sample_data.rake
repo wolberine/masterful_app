@@ -17,5 +17,38 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+
+address_array = ["19700 S Vermont Ave Suite Torrance, CA 90502",
+                "521 E Green StPasadena, CA 91101",
+                "25500 Hawthorne Blvd Torrance, CA 90505",
+                "706 Knob Hill AveRedondo Beach, CA 90277",
+                "2400 Nelson AveRedondo Beach, CA 90278",
+                "2641 Manhattan Beach BlvdRedondo Beach, CA 90278",
+                "22422 Palos Verdes BlvdTorrance, CA 90505",
+                "315 S Peck AveManhattan Beach, CA 90266",
+                "1650 S Pacific Coast Hwy Ste 110Redondo Beach, CA 90277",
+                "528 Pacific Coast HwyHermosa Beach, CA 90254",
+                "800 Torrance Blvd Redondo Beach, CA",
+                "22410 Palos Verdes BlvdTorrance, CA 90505",
+                "2311 Mathews Ave. Redondo Beach, CA 90278",
+                "2221 Artesia BlvdRedondo Beach, CA 90278",
+                "307 Pacific Coast HwyHermosa Beach, CA 90254",
+                "1014 Aviation BlvdHermosa Beach, CA 90254"]
+
+
+ 15.times do |n|
+      sleep 2
+      name  = Faker::Company.name
+      instruction = Faker::Commerce.department
+      tagline = Faker::Company.catch_phrase
+      address = address_array[n]
+      photo = File.open(Dir.glob(File.join(Rails.root, 'sampleimages', '*')).sample)
+      business = Business.create!(name: name,
+                   address: address,
+                   instruction: instruction,
+                   tagline: tagline,
+                   photo: photo)
+    end
   end
 end
+
