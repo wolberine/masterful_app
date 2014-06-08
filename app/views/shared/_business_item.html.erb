@@ -1,0 +1,13 @@
+<div class="image-container" id="<%= business_item.id %>">
+
+  <div class="image-caption pull-right">
+    <%= business_item.name %>
+  </div>
+  
+  <% if !business_item.photo.url.nil? %>
+    <%= image_tag business_item.photo.url %>
+  <% end %>
+
+</div>
+
+

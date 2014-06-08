@@ -1,0 +1,29 @@
+<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.css' rel='stylesheet' />
+<style>
+</style>
+
+<div class='map-container span6'>
+	<div id='map'></div>
+</div>
+
+<div class='business-container span5'>
+	<div id="business-feed"><%= render 'shared/feed' %><div>
+</div>
+
+
+<!--<div><%= @geojson.to_json.html_safe %></div>-->
+
+<script>
+
+var geojson = <%= @geojson.to_json.html_safe %>;
+
+var map = L.mapbox.map('map', 'wolberine.ie32ldce');
+
+map
+.setView([42.3314, -83.0458], 16)
+.featureLayer.setGeoJSON(geojson);
+
+map.fitBounds(map.featureLayer.getBounds());
+
+</script>

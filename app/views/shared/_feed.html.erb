@@ -1,0 +1,10 @@
+<% if @businesses.any? %>
+
+  <div class="business_items">
+    	<%= render partial: 'shared/business_item', collection: @businesses %>
+  </div>
+  
+  	<% if false %>
+	<!-- <%= will_paginate @businesses %> -->
+	<% end %>
+<% end %>

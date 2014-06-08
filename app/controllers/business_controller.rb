@@ -6,7 +6,26 @@ class BusinessController < ApplicationController
 
 
   def index
-    @businesses = Business.paginate(page: params[:page])
+    #@businesses = Business.paginate(page: params[:page])
+    @businesses = Business.all;
+    ggeojson = []
+    @businesses.each do |business|
+    	 ggeojson << {
+    		type: "Feature",
+    		geometry: {
+    			type: "Point",
+    			coordinates: [ business.longitude, business.latitude]
+    		},
+    		properties:{
+    			title: business.name,
+    			description: business.tagline,
+    			:'marker-color' => "#00607d",
+    			:'maker-symbol' => "circle",
+    			:'marker-size' => "medium"
+    		}
+    	}    
+    end
+    @geojson = ggeojson
   end
 
   def new
