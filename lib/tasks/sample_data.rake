@@ -19,7 +19,6 @@ namespace :db do
     end
 
 address_array = ["19700 S Vermont Ave Suite Torrance, CA 90502",
-                "521 E Green StPasadena, CA 91101",
                 "25500 Hawthorne Blvd Torrance, CA 90505",
                 "706 Knob Hill AveRedondo Beach, CA 90277",
                 "2400 Nelson AveRedondo Beach, CA 90278",
@@ -33,7 +32,8 @@ address_array = ["19700 S Vermont Ave Suite Torrance, CA 90502",
                 "2311 Mathews Ave. Redondo Beach, CA 90278",
                 "2221 Artesia BlvdRedondo Beach, CA 90278",
                 "307 Pacific Coast HwyHermosa Beach, CA 90254",
-                "1014 Aviation BlvdHermosa Beach, CA 90254"]
+                "1014 Aviation BlvdHermosa Beach, CA 90254",
+                "919 S Pacific Coast Hwy, Redondo Beach, CA 90277"]
 
 
  15.times do |n|
