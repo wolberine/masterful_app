@@ -1,5 +1,22 @@
-<h1>New child</h1>
+<% provide(:title, 'Add Children') %>
+<h1>Add my child</h1>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@child) do |f| %>
 
-<%= link_to 'Back', children_path %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :gender %>
+      <%= f.text_field :gender %>
+
+      <%= f.label :date_of_birth %>
+	  <%= date_field(:child, :date_of_birth) %>
+
+
+
+      <%= f.submit "Add my child", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

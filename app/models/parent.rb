@@ -8,6 +8,7 @@ class Parent < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: { minimum: 6 }
+  has_many :children, dependent: :destroy
 
   def Parent.new_remember_token
     SecureRandom.urlsafe_base64

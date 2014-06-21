@@ -1,4 +1,40 @@
+
+$navbarBackground: #00CC00;
+
 @import "bootstrap";
+
+/* navbar css */
+.navbar-inner { 
+background: rgb(21,181,0); /* Old browsers */
+background: -moz-linear-gradient(left, rgba(21,181,0,1) 36%, rgba(0,110,46,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(36%,rgba(21,181,0,1)), color-stop(100%,rgba(0,110,46,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left, rgba(21,181,0,1) 36%,rgba(0,110,46,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left, rgba(21,181,0,1) 36%,rgba(0,110,46,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left, rgba(21,181,0,1) 36%,rgba(0,110,46,1) 100%); /* IE10+ */
+background: linear-gradient(to right, rgba(21,181,0,1) 36%,rgba(0,110,46,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#15b500', endColorstr='#006e2e',GradientType=1 ); /* IE6-9 */
+
+padding: 5px;
+
+}
+.navbar .nav > li > a {
+    color: white;
+    float: none;
+    padding: 10px 15px;
+    text-decoration: none;
+    text-shadow: 0 0px 0 #ffffff;
+}
+
+ul.nav a:hover { color: rgba(227,245,171,1) !important; }
+
+.grasshopper{
+  max-height: 45px;
+  &:hover {
+    color: rgba(227,245,171,1);
+    text-decoration: none;
+    background: rgba(0,110,46,1);
+  }
+}
 
 /* mixins, variables, etc. */
 
@@ -21,7 +57,7 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 80px;
 }
 
 section {
@@ -72,23 +108,24 @@ p {
 #logo {
   float: left;
   margin-right: 10px;
-  font-size: 1.7em;
+  font-size: 2.5em;
   color: white;
-  text-transform: uppercase;
+  text-transform: lowercase;
   letter-spacing: -1px;
-  padding-top: 9px;
+  padding-top: 4px;
   font-weight: bold;
   line-height: 1;
   &:hover {
-    color: white;
+    color: rgba(227,245,171,1);
     text-decoration: none;
+    background: rgba(0,110,46,0);
   }
 }
 
 /* footer */
 
 footer {
-  position:absolute;
+  position:relative;
   bottom: 0;
   height: 60px;
   margin-top: 45px;
