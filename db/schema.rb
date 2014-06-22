@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140621203238) do
+ActiveRecord::Schema.define(version: 20140622183856) do
 
   create_table "businesses", force: true do |t|
     t.string   "name"
@@ -52,5 +52,16 @@ ActiveRecord::Schema.define(version: 20140621203238) do
 
   add_index "parents", ["email"], name: "index_parents_on_email", unique: true
   add_index "parents", ["remember_token"], name: "index_parents_on_remember_token"
+
+  create_table "relationships", force: true do |t|
+    t.integer  "parent_id"
+    t.integer  "child_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "relationships", ["child_id"], name: "index_relationships_on_child_id"
+  add_index "relationships", ["parent_id", "child_id"], name: "index_relationships_on_parent_id_and_child_id", unique: true
+  add_index "relationships", ["parent_id"], name: "index_relationships_on_parent_id"
 
 end

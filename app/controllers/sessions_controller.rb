@@ -8,7 +8,10 @@ class SessionsController < ApplicationController
     if parent && parent.authenticate(params[:session][:password])
       # Sign the user in and redirect to the user's show page.
       sign_in parent
-      redirect_to root_url
+      #redirect_to root_url
+      redirect_to :controller => "parents", :action => "show", :id => parent.id
+
+
       #redirect_back_or parent
     else
       flash.now[:error] = 'Invalid email/password combination'

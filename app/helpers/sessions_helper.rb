@@ -18,6 +18,13 @@ module SessionsHelper
     !current_parent.nil?
   end
 
+  def signed_in_parent
+    unless signed_in?
+      store_location
+      redirect_to signin_url, notice: "Please sign in."
+    end
+  end
+
   def current_parent=(parent)
     @current_parent = parent
   end
@@ -41,3 +48,6 @@ module SessionsHelper
   end
 
 end
+
+
+

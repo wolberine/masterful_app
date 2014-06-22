@@ -2,6 +2,7 @@ MasterfulApp::Application.routes.draw do
   resources :children
   resources :parents
   resources :sessions, only: [:new, :create, :destroy]
+  resources :relationships, only: [:create, :destroy]
   
   root  'static_pages#home'
   match '/signup',  to: 'parents#new',            via: 'get'

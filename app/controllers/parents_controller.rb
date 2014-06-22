@@ -13,6 +13,8 @@ class ParentsController < ApplicationController
   # GET /parents/1.json
   def show
     @parent = Parent.find(params[:id])
+    @children = @parent.children.paginate(page: params[:page])
+    @child = current_parent.children.build if signed_in?
   end
 
   # GET /parents/new
@@ -29,10 +31,13 @@ class ParentsController < ApplicationController
   # POST /parents.json
   def create
     @parent = Parent.new(parent_params)
+    #@parent.save!
     if @parent.save
       sign_in @parent
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to root_url
+      flash[:success] = "Welcome to grasshopper!"
+      #redirect_to root_url
+      redirect_to :controller => "parents", :action => "show", :id => @parent.id
+
     else
       render 'new'
     end
@@ -74,10 +79,7 @@ class ParentsController < ApplicationController
     end
 
     # Before filters
-    def signed_in_parent
-      store_location
-      redirect_to signin_url, notice: "Please sign in." unless signed_in?
-    end
+
 
    def correct_parent
       @parent= Parent.find(params[:id])

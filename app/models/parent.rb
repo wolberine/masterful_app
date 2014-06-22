@@ -8,6 +8,8 @@ class Parent < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: { minimum: 6 }
+  #has_many :relationships, foreign_key: "child_id", dependent: :destroy
+  #has_many :children, through: :relationships
   has_many :children, dependent: :destroy
 
   def Parent.new_remember_token
@@ -16,6 +18,14 @@ class Parent < ActiveRecord::Base
 
   def Parent.digest(token)
     Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  def child?(child)
+    relationships.find_by(child_id: child.id)
+  end
+
+  def follow!(child)
+    relationships.create!(child_id: child.id)
   end
 
   private

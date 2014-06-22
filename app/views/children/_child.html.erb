@@ -1,0 +1,13 @@
+<li>
+  <span class="name"><%= child.name %></span>
+  <span class="gender"><%= child.gender %></span>
+  <span class="date_of_birth"><%= child.date_of_birth %></span>
+  <span class="timestamp">
+    Created <%= time_ago_in_words(child.created_at) %> ago.
+  </span>
+  <% if current_parent?(child.parent) %>
+    <%= link_to "delete", child, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: child.name %>
+  <% end %>
+</li>

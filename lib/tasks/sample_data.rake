@@ -17,6 +17,7 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+  make_children
 
 address_array = ["19700 S Vermont Ave Suite Torrance, CA 90502",
                 "25500 Hawthorne Blvd Torrance, CA 90505",
@@ -50,5 +51,18 @@ address_array = ["19700 S Vermont Ave Suite Torrance, CA 90502",
                    photo: photo)
     end
   end
+
+def make_children
+  parents = Parent.all(limit: 10)
+  5.times do
+    name = Faker::Name.name
+    gender = "male"
+    date_of_birth = "2014-06-21"
+    parents.each { |parent| parent.children.create!(name: name,
+                                                    gender: gender,
+                                                    date_of_birth: date_of_birth) }
+  end
+end
+
 end
 

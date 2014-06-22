@@ -7,5 +7,18 @@
         <%= @parent.name %>
       </h1>
     </section>
+    <h3>Add a child</h3>
+    <section>
+       <%= render 'shared/child_form' %>
+    </section>
   </aside>
+  <div class="span8">
+    <% if @parent.children.any? %>
+      <h3>Children (<%= @parent.children.count %>)</h3>
+      <ol class="children">
+        <%= render @children %>
+      </ol>
+      <%= will_paginate @children %>
+    <% end %>
+  </div>
 </div>
